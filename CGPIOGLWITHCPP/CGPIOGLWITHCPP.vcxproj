@@ -79,7 +79,7 @@
       <AdditionalIncludeDirectories>C:\development\libraries\OpenGLadditionalLibraries\include\GLFW;C:\development\libraries\OpenGLadditionalLibraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\development\libraries\OpenGLadditionalLibraries\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;soil2-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
