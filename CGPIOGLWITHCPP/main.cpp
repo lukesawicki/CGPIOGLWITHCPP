@@ -80,6 +80,7 @@ void init(GLFWwindow* window) {
 }
 
 void display(GLFWwindow* window, double currentTime) {
+
 	glClear(GL_DEPTH_BUFFER_BIT);
     
     glUseProgram(renderingProgram); // extracted
