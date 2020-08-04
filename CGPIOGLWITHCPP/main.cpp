@@ -30,6 +30,8 @@ glm::mat4 modelMatrix;
 //Matrix4GLF modelMatrix;
 glm::mat4 modelViewMatrix;
 //Matrix4GLF modelViewMatrix;
+glm::mat4 translationModelMatrix;
+glm::mat4 rotationModelMatrix;
 
 GLuint renderingProgram;
 
@@ -79,9 +81,11 @@ void init(GLFWwindow* window) {
     setupVertices();
 }
 
-void display(GLFWwindow* window, double currentTime) {
+void display(GLFWwindow* window, double currentTime)
+{
 
 	glClear(GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
     
     glUseProgram(renderingProgram); // extracted
 
@@ -92,16 +96,25 @@ void display(GLFWwindow* window, double currentTime) {
     aspect = static_cast<float>(width / height);
     
     perspectiveMatrix = glm::perspective(1.0472F, aspect, 0.1F, 1000.0F); // 1.0472 radians = 60 degrees
-    //perspectiveMatrix = glm::perspective(1.0472F, aspect, 0.1F, 1000.0F); // 1.0472 radians = 60 degrees
-    //static Matrix4F buildPerspectiveProjectionMatrix(float fieldOfViewY, float aspectRatio, float zNearPlane, float zFarPlane)
-    //perspectiveMatrix = buildPerspectiveProjectionMatrixGLF(1.0472F, aspect, 0.1F, 1000.0F);
-
-
+    std::cout << (int)&perspectiveMatrix << std::endl;
     viewMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(-cameraX, -cameraY, -cameraZ));
-    //viewMatrix = buildTranslationMatrixGL(-cameraX, -cameraY, -cameraZ);
-    modelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(cubeLocationX, cubeLocationY, cubeLocationZ));
-    //modelMatrix = buildTranslationMatrixGL(cubeLocationX, cubeLocationY, cubeLocationZ);
     
+    // modelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(cubeLocationX, cubeLocationY, cubeLocationZ));
+    //translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(sin(0.35F*currentTime)*2.0F, cos(0.52F*currentTime)*2.0F, sin(0.7F*currentTime)*2.0F));
+    
+    //rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
+    rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
+
+    
+    //rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
+
+   	//rMat = glm::rotate(rotationModelMatrix, 1.75f*(float)currentTime, glm::vec3(1.0f, 0.0f, 0.0f));
+	//rMat = glm::rotate(rMat, 1.75f*(float)currentTime, glm::vec3(0.0f, 0.0f, 1.0f));
+    modelMatrix = translationModelMatrix * rotationModelMatrix;
+
     modelViewMatrix = viewMatrix * modelMatrix;
     //modelViewMatrix = multiplyAbyB(viewMatrix, modelMatrix);
 
@@ -128,7 +141,7 @@ int main()
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) { exit(EXIT_FAILURE); }
 
-	glfwSwapInterval(1);
+	//glfwSwapInterval(1);
 
 	init(window);
 
