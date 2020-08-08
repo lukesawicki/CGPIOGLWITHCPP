@@ -114,9 +114,14 @@ void display(GLFWwindow* window, double currentTime)
 //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
 //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
 
-    rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
-    rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
-    rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
+    //ok
+    //rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
+
+        rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
+    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
 
    	//rMat = glm::rotate(rotationModelMatrix, 1.75f*(float)currentTime, glm::vec3(1.0f, 0.0f, 0.0f));
 	//rMat = glm::rotate(rMat, 1.75f*(float)currentTime, glm::vec3(0.0f, 0.0f, 1.0f));
