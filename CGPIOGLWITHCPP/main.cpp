@@ -96,43 +96,18 @@ void display(GLFWwindow* window, double currentTime)
     aspect = static_cast<float>(width / height);
     
     perspectiveMatrix = glm::perspective(1.0472F, aspect, 0.1F, 1000.0F); // 1.0472 radians = 60 degrees
-    //std::cout << (int)&perspectiveMatrix << std::endl;
+
     viewMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(-cameraX, -cameraY, -cameraZ));
-    
-    // modelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(cubeLocationX, cubeLocationY, cubeLocationZ));
-    
-//translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(sin(0.35F*currentTime)*2.0F, cos(0.52F*currentTime)*2.0F, sin(0.7F*currentTime)*2.0F));
+
     translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(1.0F, 1.0F, 1.0F));
-    
-    //rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
-    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
-    
-    ///rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
 
-    
-//rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
-//rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
-//rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
-
-    //ok
-    //rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
-    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
-    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
-
-        rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
-    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
-    //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 0.0F, 1.0F));
-
-   	//rMat = glm::rotate(rotationModelMatrix, 1.75f*(float)currentTime, glm::vec3(1.0f, 0.0f, 0.0f));
-	//rMat = glm::rotate(rMat, 1.75f*(float)currentTime, glm::vec3(0.0f, 0.0f, 1.0f));
+    rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
 
     modelMatrix = translationModelMatrix * rotationModelMatrix;
 
     modelViewMatrix = viewMatrix * modelMatrix;
-    //modelViewMatrix = multiplyAbyB(viewMatrix, modelMatrix);
 
     glUniformMatrix4fv(modelViewLocation, 1, GL_FALSE, glm::value_ptr(modelViewMatrix));
-    //glUniformMatrix4fv(modelViewLocation, 1, GL_FALSE, &(modelViewMatrix.x1)); // 
     glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(perspectiveMatrix)); //
 
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject[0]); //
@@ -153,8 +128,6 @@ int main()
 	GLFWwindow* window = glfwCreateWindow(600, 600, "For god sake regular hexahedron ", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) { exit(EXIT_FAILURE); }
-
-	//glfwSwapInterval(1);
 
 	init(window);
 
