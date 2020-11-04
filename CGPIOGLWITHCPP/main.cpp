@@ -101,8 +101,8 @@ void display(GLFWwindow* window, double currentTime)
     
     // modelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(cubeLocationX, cubeLocationY, cubeLocationZ));
     
-//translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(sin(0.35F*currentTime)*2.0F, cos(0.52F*currentTime)*2.0F, sin(0.7F*currentTime)*2.0F));
-    translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(1.0F, 1.0F, 1.0F));
+    translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(sin(0.35F*currentTime)*2.0F, cos(0.52F*currentTime)*2.0F, sin(0.7F*currentTime)*2.0F));
+    // 04.11.2020 translationModelMatrix = glm::translate(glm::mat4(1.0F), glm::vec3(1.0F, 1.0F, 1.0F));
     
     //rotationModelMatrix = glm::rotate(glm::mat4(1.0F), 1.75F*static_cast<float>(currentTime), glm::vec3(0.0F, 1.0F, 0.0F));
     //rotationModelMatrix = glm::rotate(rotationModelMatrix, 1.75F*static_cast<float>(currentTime), glm::vec3(1.0F, 0.0F, 0.0F));
